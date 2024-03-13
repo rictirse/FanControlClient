@@ -1,0 +1,168 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+   
+    <sys:Double x:Key="FontSize">16</sys:Double>
+
+    <Style x:Key="TitleStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="{DynamicResource F3}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
+    <Style x:Key="LableStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TitleStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource F3}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="FontWeight" Value="Heavy" />
+        <Setter Property="Margin" Value="10,0,10,0"/>
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Visibility" Value="Collapsed" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--有選擇框的checkbox style-->
+    <Style x:Key="BaseCheckBox" TargetType="{x:Type CheckBox}">
+        <Setter Property="Foreground" Value="{DynamicResource F3}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="FontWeight" Value="Regular" />
+        <Setter Property="Margin" Value="18,5,10,3"/>
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <BulletDecorator Background="Transparent" SnapsToDevicePixels="true" Margin="0,3">
+                        <BulletDecorator.Bullet>
+                            <Border x:Name="IndeterminateBorder" BorderBrush="{DynamicResource F3}" Background="{StaticResource AlphaBrush}" BorderThickness="1" Width="15" Height="15" >
+                                <Grid Margin="1">
+                                    <Path x:Name="IndeterminateMark" Visibility="Collapsed" Fill="{StaticResource H1}" Style="{StaticResource PathTick}"/>
+                                </Grid>
+                            </Border>
+                        </BulletDecorator.Bullet>
+
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Margin="5,0,0,0"
+                                          RecognizesAccessKey="True"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </BulletDecorator>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="IndeterminateMark" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="IndeterminateBorder" Property="BorderBrush" Value="{DynamicResource F3}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="IndeterminateMark" Property="Fill" Value="{StaticResource DisabledForegroundBrush}"/>
+                            <Setter TargetName="IndeterminateBorder" Property="BorderBrush" Value="{StaticResource DisabledForegroundBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--有選擇框的checkbox style-->
+    <Style x:Key="BaseRadioButton" TargetType="{x:Type RadioButton}">
+        <Setter Property="Foreground" Value="{DynamicResource F3}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="FontWeight" Value="Regular" />
+        <Setter Property="Margin" Value="10,0,10,0"/>
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <BulletDecorator Background="Transparent" SnapsToDevicePixels="true" Margin="0,3">
+                        <BulletDecorator.Bullet>
+                            <Border x:Name="IndeterminateBorder" BorderBrush="{DynamicResource F3}" Background="{StaticResource AlphaBrush}" BorderThickness="1" Width="15" Height="15" >
+                                <Grid Margin="1">
+                                    <Path x:Name="IndeterminateMark" Visibility="Collapsed" Fill="{StaticResource H1}" Style="{StaticResource PathTick}"/>
+                                </Grid>
+                            </Border>
+                        </BulletDecorator.Bullet>
+
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Margin="5,0,0,0"
+                                          RecognizesAccessKey="True"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </BulletDecorator>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="IndeterminateMark" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="IndeterminateBorder" Property="BorderBrush" Value="{DynamicResource F3}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="IndeterminateMark" Property="Fill" Value="{StaticResource DisabledForegroundBrush}"/>
+                            <Setter TargetName="IndeterminateBorder" Property="BorderBrush" Value="{StaticResource DisabledForegroundBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="EditStyle" TargetType="TextBox">
+        <Setter Property="Margin" Value="5,0,0,0" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="AcceptsReturn" Value="True" />
+        <Setter Property="Foreground" Value="{DynamicResource F3}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                    <Border x:Name="border" BorderBrush="{DynamicResource F3}" BorderThickness="{TemplateBinding BorderThickness}" Background="{DynamicResource H2}" SnapsToDevicePixels="True">
+                        <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource H1}"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TextBoxStyle" TargetType="TextBox">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="MinWidth" Value="60" />
+        <Setter Property="Foreground" Value="{StaticResource F3}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="Margin" Value="0,2,0,2"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="#33FFFFFF" SnapsToDevicePixels="True">
+                        <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="border" Value="0.40"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource DisabledForegroundBrush}"/>
+                            <Setter Property="BorderThickness" Value="2"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

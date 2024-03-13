@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="FanControlClient.Setting"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FanControlClient"
+             xmlns:ctrl="clr-namespace:FanControlClient.Control"
+             mc:Ignorable="d">
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource LableStyle}">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Margin" Value="15,15,5,5"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <TextBlock Text="{Binding RoomTemp, StringFormat=Room temperature: {0:F1}℃}" Width="250"/>
+        <TextBlock Text="{Binding WaterInTemp, StringFormat=Water in temperature: {0:F1}℃}" Width="250"/>
+        <TextBlock Text="{Binding WaterOutTemp, StringFormat=Water out temperature: {0:F1}℃}" Width="250"/>
+        
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding PumpRPM, StringFormat=Pump: {0}RPM}" Width="150"/>
+            <Slider Value="{Binding Path=PumpPwm, Mode=TwoWay}" 
+                    Style="{StaticResource Horizontal_Slider}"
+                    Maximum="100" 
+                    IsSnapToTickEnabled="True" 
+                    SmallChange="1"/>
+            <ctrl:NumericUpDown MaxValue="100" MinValue="0" MaxLength="3"
+                                Value="{Binding Path=PumpPwm, Mode=TwoWay}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding FanRPM, StringFormat=Fan: {0}RPM}" Width="150"/>
+            <Slider Value="{Binding Path=FanPwm, Mode=TwoWay}" 
+                    Style="{StaticResource Horizontal_Slider}"
+                    Maximum="100" 
+                    IsSnapToTickEnabled="True" 
+                    SmallChange="1"/>
+            <ctrl:NumericUpDown MaxValue="100" MinValue="0" MaxLength="3"
+                                Value="{Binding Path=FanPwm, Mode=TwoWay}" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>
