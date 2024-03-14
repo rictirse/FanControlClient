@@ -3,6 +3,8 @@ using FanControlClient.Service.Interface;
 using FanControlClient.ViewModel.Interface;
 using Microsoft.Extensions.Options;
 using System.Collections.Immutable;
+using System.Configuration;
+using System.Windows.Threading;
 
 namespace FanControlClient.ViewModel;
 
@@ -10,14 +12,37 @@ public class MainWindowVM : IMainWindow
 {
     private readonly AppConfigOptions Configuration;
     private readonly ISerialService SerialSvc;
+    private readonly IAIDA64ReaderService AIDA64ReaderSvc;
+    private readonly DispatcherTimer UpdateTimer;
 
     public MainWindowVM(
         ISerialService serialSvc,
+        IAIDA64ReaderService aida64ReaderSvc,
         IOptions<AppConfigOptions> configuration)
     {
         SerialSvc = serialSvc;
+        AIDA64ReaderSvc = aida64ReaderSvc;
         Configuration = configuration.Value;
         SerialSvc.DataUpdate += SerialDataUpdate;
+        UpdateTimer = new DispatcherTimer();
+        UpdateTimer.Interval = TimeSpan.FromSeconds(0.5);
+        UpdateTimer.Tick += OnTime;
+        UpdateTimer.Start();
+    }
+
+    private void OnTime(object? sender, EventArgs e)
+    {
+        AIDA64ReaderSvc.UpdateData();
+        float? value = AIDA64ReaderSvc.GetFloat("TCPU");
+        if (value != null)
+        { 
+            Configuration.CPUTemp = (float)value;
+        }
+        value = AIDA64ReaderSvc.GetFloat("SCPUUTI");
+        if (value != null)
+        { 
+            Configuration.CPUUsage = (float)value;
+        }
     }
 
     private void SerialDataUpdate(object? sender, EventArgs e)

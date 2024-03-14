@@ -32,6 +32,7 @@ public partial class App : Application
 
     private void ConfigureServices(IServiceCollection services)
         => services.AddScoped<MainWindow>()
+           .AddScoped<IAIDA64ReaderService, AIDA64ReaderService>()
            .AddScoped<ISerialService, SerialService>()
            .AddScoped<IMainWindow, MainWindowVM>();
 

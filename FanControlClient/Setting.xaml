@@ -17,6 +17,8 @@
     </UserControl.Resources>
 
     <StackPanel>
+        <TextBlock Text="{Binding CPUUsage, StringFormat=CPU Usage: {0:F1}%}" Width="250"/>
+        <TextBlock Text="{Binding CPUTemp, StringFormat=CPU temperature: {0:F1}℃}" Width="250"/>
         <TextBlock Text="{Binding RoomTemp, StringFormat=Room temperature: {0:F1}℃}" Width="250"/>
         <TextBlock Text="{Binding WaterInTemp, StringFormat=Water in temperature: {0:F1}℃}" Width="250"/>
         <TextBlock Text="{Binding WaterOutTemp, StringFormat=Water out temperature: {0:F1}℃}" Width="250"/>

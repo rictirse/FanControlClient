@@ -77,4 +77,20 @@ public class AppConfigOptions : PropertyBase
 
     }
     private float _RoomTemp = 0f;
+
+    [JsonIgnore]
+    public float CPUTemp
+    {
+        get => _CPUTemp;
+        set => SetProperty(ref _CPUTemp, value);
+    }
+    private float _CPUTemp = 0f;
+
+    [JsonIgnore]
+    public float CPUUsage
+    {
+        get => _CPUUsage;
+        set => SetProperty(ref _CPUUsage, value);
+    }
+    private float _CPUUsage = 0f;
 }
