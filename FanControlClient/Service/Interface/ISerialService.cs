@@ -5,6 +5,5 @@ namespace FanControlClient.Service.Interface;
 public interface ISerialService
 {
     Task SendToSerialAsync(string cmd);
-    void SendToSerial(string cmd);
     event EventHandler DataUpdate;
 }

@@ -1,4 +1,5 @@
-﻿using FanControlClient.ViewModel.Base;
+﻿using FanControlClient.Helper;
+using FanControlClient.ViewModel.Base;
 using System.Text.Json.Serialization;
 
 namespace FanControlClient.Model.Setting;
@@ -14,6 +15,7 @@ public class AppConfigOptions : PropertyBase
         set 
         {
             SetProperty(ref _PumpPwm, value);
+            this.SaveConfig();
             if (SetPumpEvnet is null) return;
             SetPumpEvnet(_PumpPwm, new EventArgs());
         }
@@ -26,6 +28,7 @@ public class AppConfigOptions : PropertyBase
         set
         { 
             SetProperty(ref _FanPwm, value);
+            this.SaveConfig();
             if (SetFanEvent is null) return;
             SetFanEvent(_FanPwm, new EventArgs());
         }

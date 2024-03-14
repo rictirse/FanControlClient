@@ -28,24 +28,23 @@ public static class JsonHelper
 
     public static void Save(FileInfo aFi, string aContent)
     {
-        if (!aFi.Directory!.Exists)
-        {
-            aFi.Directory.Create();
-        }
-
-        if (aFi.Exists)
-        {
-            aFi.Delete();
-        }
-
-        aFi.Refresh();
-        if (aFi.Exists) throw new Exception("寫檔失敗，檔案已存在或已開啟。");
-
         try
         {
+            if (!aFi.Directory!.Exists)
+            {
+                aFi.Directory.Create();
+            }
+
+            if (aFi.Exists)
+            {
+                aFi.Delete();
+            }
+
+            aFi.Refresh();
+            if (aFi.Exists) throw new Exception("寫檔失敗，檔案已存在或已開啟。");
+
             File.WriteAllText(aFi.FullName, aContent);
         }
-        catch (IOException) { throw; }
-        catch (Exception) { throw; }
+        catch { }
     }
 }
